@@ -1,0 +1,20 @@
+kind: VirtualService
+apiVersion: networking.istio.io/v1alpha3
+metadata:
+  name: nginx-route
+spec:
+  hosts:
+    - 'christest.dev.demandbase.com'
+  gateways:
+    - chris-gateway
+  http:
+    - match:
+        - uri:
+            exact: /
+      route:
+        - destination:
+            host: nginx-service.default.svc.cluster.local
+            port:
+              number: 80
+            subset: v1
+          weight: 100
