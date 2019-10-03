@@ -14,8 +14,17 @@ spec:
         tcp: {}
       loadBalancer:
         simple: RANDOM
+  - name: v2
+    labels:
+      app: nginx
+    trafficPolicy:
+      connectionPool:
+        http: {}
+        tcp: {}
+      loadBalancer:
+        simple: RANDOM
       outlierDetection:
         baseEjectionTime: 20s
-        consecutiveErrors: 3
-        interval: 10s
+        consecutiveErrors: 2
+        interval: 5s
         maxEjectionPercent: 100
