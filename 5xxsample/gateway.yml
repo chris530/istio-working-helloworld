@@ -1,12 +1,11 @@
 kind: Gateway
 apiVersion: networking.istio.io/v1alpha3
 metadata:
-  name: gateway
-  namespace: default
+  name: chris-gateway
 spec:
   servers:
     - hosts:
-        - '*'
+        - 'christest.dev.demandbase.com'
       port:
         name: http
         number: 80
