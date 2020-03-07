@@ -18,10 +18,6 @@ spec:
           host: nginx.auto.svc.cluster.local
           subset: v2
         weight: 50
-    retries:
-      attempts: 3
-      perTryTimeout: 2s
-      retryOn: 5xx
 ---
 kind: DestinationRule
 apiVersion: networking.istio.io/v1alpha3
@@ -36,19 +32,9 @@ spec:
     trafficPolicy:
       loadBalancer:
         simple: RANDOM
-      outlierDetection:
-        baseEjectionTime: 3m
-        consecutiveErrors: 1
-        interval: 1s
-        maxEjectionPercent: 100
   - name: v2
     labels:
       version: v2
     trafficPolicy:
       loadBalancer:
         simple: RANDOM
-      outlierDetection:
-        baseEjectionTime: 3m
-        consecutiveErrors: 1
-        interval: 1s
-        maxEjectionPercent: 100
